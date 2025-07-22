@@ -11,24 +11,28 @@ export default function LandingPage(){
 
   const [popularMovies, setPopularMovies] = useState([])
   const [trendingMovies, setTrendingMovies] = useState([])
+  const [upcomingMovies, setUpcomingMovies] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
     async function fetchMovies() {
       try {
-        const [popularRes, trendingRes] = await Promise.all([
+        const [popularRes, trendingRes, upcomingRes] = await Promise.all([
           fetch(`${API_BASE_URL}/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}`),
-          fetch(`${API_BASE_URL}/trending/movie/day?api_key=${API_KEY}`)
+          fetch(`${API_BASE_URL}/trending/movie/day?api_key=${API_KEY}`),
+          fetch(`${API_BASE_URL}/movie/upcoming?api_key=${API_KEY}`)
         ])
         
         const popularData = await popularRes.json()
         const trendingData = await trendingRes.json()
+        const upcomingData = await upcomingRes.json()
 
         console.log(trendingData.results)
         console.log(popularData.results)
 
         setPopularMovies(popularData.results)
         setTrendingMovies(trendingData.results)
+        setUpcomingMovies(upcomingData.results)
 
       } catch (error) {
         console.error("Failed to fetch Movies.", error)
@@ -38,9 +42,8 @@ export default function LandingPage(){
     }
 
     fetchMovies()
-  }
+  },[])
   
-  ,[])
   return(
     <main className="py-6 px-12 mt-10 min-h-screen">
       {loading ? (
@@ -49,6 +52,7 @@ export default function LandingPage(){
         <div>
           <Search />
           <Carousel movies={popularMovies} sectionTitle="Popular Movies"/>
+          <Carousel movies={upcomingMovies} sectionTitle="Upcoming Movies"/>
           <Carousel movies={trendingMovies} sectionTitle="Trending Movies"/>
         </div>
       )}

@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 export default function Carousel({movies, sectionTitle}){
   return(
@@ -7,11 +8,19 @@ export default function Carousel({movies, sectionTitle}){
       <ul className="grid grid-flow-col auto-cols-[200px] overflow-x-auto gap-3 custom-scrollbar">
         {movies.slice(0,10).map((movie)=>(
           <Link href={`/movie/${movie.id}`} key={movie.id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-              alt={movie.title}
-              className="rounded-lg object-cover cursor-pointer"
-            />
+            {movie.poster_path ? (
+              <Image
+                src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                alt={movie.title}
+                width={250}
+                height={350}
+                className="rounded-lg object-cover cursor-pointer"
+              />
+            ) : (
+              <div className="w-[150px] h-[225px] bg-[#d4aa7d] rounded-lg mx-auto flex items-center justify-center text-sm">
+                  No Image
+              </div>
+            )}
           </Link>
         ))}
       </ul>
