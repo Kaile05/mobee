@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { useState } from "react"
-import Image from "next/image"
+import Card from "./Card"
 
 const API_BASE_URL = 'https://api.themoviedb.org/3'
 const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY
@@ -48,7 +48,6 @@ export default function Search() {
         </button>
       </div>
 
- 
       {loading && (
         <p className="text-center text-gray-500 mb-4">Searching...</p>
       )}
@@ -57,23 +56,10 @@ export default function Search() {
       {searchResult.length > 0 && (
         <div className="mt-8">
           <h3 className="text-xl font-bold mb-4">Search Results</h3>
-          <ul className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {searchResult.map((movie) => (
               <Link href={`/movie/${movie.id}`} key={movie.id} className="cursor-pointer">
-                {movie.poster_path ? (
-                  <Image
-                    src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-                    alt={movie.title}
-                    width={250}
-                    height={350}
-                    className="rounded-lg object-cover cursor-pointer"
-                  />
-                ) : (
-                  <div className="w-[150px] h-[225px] bg-[#d4aa7d] rounded-lg mx-auto flex items-center justify-center text-sm">
-                      No Image
-                  </div>
-                )}
-                <p className="mt-1 text-sm text-center">{movie.title}</p>
+                <Card data={movie} src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}/>
               </Link>
             ))}
           </ul>

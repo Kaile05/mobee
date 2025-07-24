@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 export default function MovieOverview({ overview }) {
   const [isExpanded, setIsExpanded] = useState(false)
-  const limit = 150
+  const limit = 240
 
   const toggleOverview = () => setIsExpanded(!isExpanded)
 

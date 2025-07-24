@@ -27,9 +27,6 @@ export default function LandingPage(){
         const trendingData = await trendingRes.json()
         const upcomingData = await upcomingRes.json()
 
-        console.log(trendingData.results)
-        console.log(popularData.results)
-
         setPopularMovies(popularData.results)
         setTrendingMovies(trendingData.results)
         setUpcomingMovies(upcomingData.results)
@@ -45,7 +42,7 @@ export default function LandingPage(){
   },[])
   
   return(
-    <main className="py-6 px-12 mt-10 min-h-screen">
+    <main className="py-6 px-4 sm:px-6 md:px-12 mt-10 min-h-screen">
       {loading ? (
         <div>Loading...</div>
       ) : (
