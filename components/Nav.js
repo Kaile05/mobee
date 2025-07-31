@@ -7,7 +7,7 @@ export default function Nav() {
         <Link href="/" className="text-2xl font-bold text-white">
           Mo<span className="text-[#d4aa7d]">Bee</span>
         </Link>
-        <Link href="/discover" className="text-md text-white">
+        <Link href="/discover" className="py-1.5 px-3 rounded bg-[#d4aa7d] text-md text-white hover:bg-[#f0c18f]">
           All Movies
         </Link>
       </div>

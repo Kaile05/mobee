@@ -26,7 +26,7 @@ export default async function MovieDetailPage({ params }) {
                 alt={movie.title}
                 width={250}
                 height={350}
-                className="mx-4 rounded-lg object-contain max-md:mt-6 shadow-2xl"         
+                className="mx-4 rounded-lg object-contain mt-8 min-md:mt-15 min-md:ml-15 shadow-2xl"         
               />
             )}
             <div className="py-3 px-6">
@@ -76,7 +76,7 @@ export default async function MovieDetailPage({ params }) {
         {reviews.length === 0 ? (
           <p className="text-gray-500">No reviews available.</p>
         ) : (
-          <div className="grid grid-cols-3 gap-3 p-3">
+          <div className="grid grid-cols-3 gap-3 p-3 max-md:grid-cols-1">
             {reviews.slice(0,3).map(review => (
               <div key={review.id} className="bg-[#2f2f2f] p-4 rounded-lg shadow-sm">
                 <p className="text-sm text-gray-600">By <span className="font-semibold">{review.author}</span></p>

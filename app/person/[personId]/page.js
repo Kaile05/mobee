@@ -44,7 +44,7 @@ export default async function PersonPage({ params }) {
 
       <section className="bg-[#2f2f2f] flex flex-col space-x-1.5 mt-3 p-3 shadow-xs min-md:w-3/4">
         <h2 className="max-md:text-sm text-2xl font-semibold">Known for</h2>
-        <div className="grid grid-cols-2 min-md:grid-cols-5 gap-1.5">
+        <div className="grid grid-cols-3 min-md:grid-cols-5 gap-1.5">
           {credits.slice(0,10).map((credit)=>(
           <Link href={`/movie/${credit.id}`} key={credit.id}>
             <Card data={credit} src={`https://image.tmdb.org/t/p/w300${credit.poster_path || credit.profile_path}`}/>
